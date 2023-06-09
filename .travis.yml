@@ -19,3 +19,15 @@ after_success:
   - docker push ethan50/m-nginx
   - docker push ethan50/m-server
   - docker push ethan50/m-worker
+
+deploy:
+  provider: elasticbeanstalk
+  region: af-south-1
+  app: Docker
+  env: Docker-env
+  bucket_name: elasticbeanstalk-af-south-1-421865218508
+  bucket_path: Docker
+  on: 
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY

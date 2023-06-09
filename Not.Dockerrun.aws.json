@@ -1,0 +1,36 @@
+{
+    "AWSEBDockerrunVersion": 2,
+    "containerDefinitions": [
+        {
+            "name": "client",
+            "image": "ethan50/m-client",
+            "hostname": "client",
+            "essential": false
+        },
+        {
+            "name": "server",
+            "image": "ethan50/m-server",
+            "hostname": "api",
+            "essential": false
+        },
+        {
+            "name": "worker",
+            "image": "ethan50/m-worker",
+            "hostname": "worker",
+            "essential": false
+        },
+        {
+            "name": "nginx",
+             "image": "ethan50/m-nginx",
+             "hostname": "nginx",
+             "essential": true,
+             "portMappings": [
+                {
+                    "hostPort": 80,
+                    "containerPort": 80
+                }
+             ],
+             "links": ["client", "server"]
+        }
+    ]
+}
